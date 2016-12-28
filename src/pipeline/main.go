@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "pipeline"
+import "links"
 func counter(out chan<-int){
 	for x:=0;x<5;x++{
 		out<-x
