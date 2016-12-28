@@ -34,7 +34,8 @@ func main() {
 	// go counter(naturals)
 	// go squarer(squares,naturals)
 	// printer(squares)
-	go mirroredQuery()
+	ret:=mirroredQuery()
+	fmt.Println(ret)
 	// go func(){
 	// 	for x:=0;x<5;x++{
 	// 		naturals<-x
