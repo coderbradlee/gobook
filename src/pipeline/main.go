@@ -21,7 +21,7 @@ func startCrawl() {
 	worklist:=make(chan[]string)
 	var n int
 	n++
-	ll:=[]string{"baidu.com","qq.com"}
+	ll:=[]string{"https://baidu.com","http://gopl.io"}
 	go func(){worklist<-ll}()
 	seen:=make(map[string]bool)
 	for ;n>0;n--{
