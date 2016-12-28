@@ -5,13 +5,13 @@ func counter(out chan<-int){
 	for x:=0;x<5;x++{
 		out<-x
 	}
-	// close(out)
+	close(out)
 }
 func squarer(out chan<-int,in <-chan int){
 	for x:=range in{
 		out<-x*x
 	}
-	// close(out)
+	close(out)
 }
 func printer(in <-chan int) {
 	for v:=range in{
