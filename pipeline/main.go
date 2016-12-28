@@ -18,12 +18,23 @@ func printer(in <-chan int) {
 		fmt.Println(v)
 	}
 }
+func mirroredQuery()string {
+	responses:=make(chan string,3)
+	go func(){responses<-request("1")}()
+	go func(){responses<-request("2")}()
+	go func(){responses<-request("3")}()
+	return <-responses
+}
+func request(hostname string)(response string){
+	return hostname
+}
 func main() {
 	naturals:=make(chan int)
 	squares:=make(chan int)
 	go counter(naturals)
 	go squarer(squares,naturals)
 	printer(squares)
+	go mirroredQuery()
 	// go func(){
 	// 	for x:=0;x<5;x++{
 	// 		naturals<-x
