@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 import "links"
+import (
+	"log"
+)
 
 var tokens=make(chan struct{},200)
 func crawl(url string)[]string{
