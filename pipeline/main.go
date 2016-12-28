@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "links"
 func counter(out chan<-int){
 	for x:=0;x<5;x++{
 		out<-x
@@ -43,7 +44,8 @@ func startCrawl() {
 	worklist:=make(chan[]string)
 	var n int
 	n++
-	go func(){worklist<-"baidu.com"}()
+	ll:=[]string{"baidu.com","qq.com"}
+	go func(){worklist<-ll}()
 	seen:=make(map[string]bool)
 	for ;n>0;n--{
 		list:=<-worklist
