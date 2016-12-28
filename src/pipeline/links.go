@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"golang.org/x/net/html"
+	"godoc.org/golang.org/x/net/html"
 )
 
 // Extract makes an HTTP GET request to the specified URL, parses
