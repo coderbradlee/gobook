@@ -29,11 +29,11 @@ func request(hostname string)(response string){
 	return hostname
 }
 func main() {
-	naturals:=make(chan int)
-	squares:=make(chan int)
-	go counter(naturals)
-	go squarer(squares,naturals)
-	printer(squares)
+	// naturals:=make(chan int)
+	// squares:=make(chan int)
+	// go counter(naturals)
+	// go squarer(squares,naturals)
+	// printer(squares)
 	go mirroredQuery()
 	// go func(){
 	// 	for x:=0;x<5;x++{
