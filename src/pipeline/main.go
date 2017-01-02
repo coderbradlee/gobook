@@ -39,7 +39,18 @@ func startCrawl() {
 	}
 }
 func main() {
-	startCrawl()
+
+	type currency int
+	const(
+		USD currency=iota
+		EUR
+		GBP
+		RMB
+		)
+	symbol:=[]string{USD:"$",EUR:"￡"}
+
+	fmt.Println(EUR,symbol[EUR])
+	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
 	// go counter(naturals)
