@@ -39,7 +39,7 @@ func startCrawl() {
 		}
 	}
 }
-func main() {
+func test() {
 	type currency int
 	const(
 		USD currency=iota
@@ -65,6 +65,16 @@ func main() {
 	slice2:=make([]int,5,5)
 	fmt.Printf("%T %d %d\n",slice1,len(slice1),cap(slice1))
 	fmt.Printf("%T %d %d\n",slice2,len(slice2),cap(slice2))
+}
+func test2() {
+	var runes []rune
+	for _,r:=range "hello,世界"{
+		runes=append(runes,r)
+	}
+	fmt.Printf("%q\n",runes)
+}
+func main() {
+	test2()
 	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
