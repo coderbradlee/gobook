@@ -54,7 +54,7 @@ func main() {
 	b:=[...]int{1,2}
 	c:=[2]int{1,3}
 	d:=[]int{1,2}
-	fmt.Println(a==b,a==c,b==c,a==d)
+	fmt.Println(a==b,a==c,b==c)
 	c1:=sha256.Sum256([]byte("x"))
 	c2:=sha256.Sum256([]byte("X"))
 	fmt.Printf("%x\n%x\n%t\n%T\n",c1,c2,c1==c2,c1)
