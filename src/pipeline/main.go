@@ -61,6 +61,10 @@ func main() {
 	fmt.Printf("%T %T %T\n",a,b,d)
 	s:=[]int{0,1,2,3,4,5}
 	fmt.Println(s[:2])
+	slice1:=make([]int,5)
+	slice2:=make([]int,5,5)
+	fmt.Printf("%T %d %d\n",slice1,slice1.len(),slice1.cap())
+	fmt.Printf("%T %d %d\n",slice2,slice2.len(),slice2.cap())
 	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
