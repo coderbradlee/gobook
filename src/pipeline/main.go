@@ -39,7 +39,6 @@ func startCrawl() {
 	}
 }
 func main() {
-
 	type currency int
 	const(
 		USD currency=iota
