@@ -59,6 +59,8 @@ func main() {
 	c2:=sha256.Sum256([]byte("X"))
 	fmt.Printf("%x\n%x\n%t\n%T\n",c1,c2,c1==c2,c1)
 	fmt.Printf("%T %T %T\n",a,b,d)
+	s:=[]int{0,1,2,3,4,5}
+	fmt.Println(s[:2])
 	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
