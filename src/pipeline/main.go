@@ -49,6 +49,10 @@ func main() {
 	symbol:=[]string{USD:"$",EUR:"￡"}
 
 	fmt.Println(EUR,symbol[EUR])
+	a:=[2]int{1,2}
+	b:=[...]int{1,2}
+	c:=[2]int{1,3}
+	fmt.Println(a==b,a==c,b==c)
 	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
