@@ -4,6 +4,7 @@ import "fmt"
 import "links"
 import (
 	"log"
+	"crypto/sha256"
 )
 
 var tokens=make(chan struct{},200)
@@ -38,8 +39,43 @@ func startCrawl() {
 		}
 	}
 }
+func test() {
+	type currency int
+	const(
+		USD currency=iota
+		EUR
+		GBP
+		RMB
+		)
+	symbol:=[]string{USD:"$",EUR:"￡"}
+
+	fmt.Println(EUR,symbol[EUR])
+	a:=[2]int{1,2}
+	b:=[...]int{1,2}
+	c:=[2]int{1,3}
+	d:=[]int{1,2}
+	fmt.Println(a==b,a==c,b==c)
+	c1:=sha256.Sum256([]byte("x"))
+	c2:=sha256.Sum256([]byte("X"))
+	fmt.Printf("%x\n%x\n%t\n%T\n",c1,c2,c1==c2,c1)
+	fmt.Printf("%T %T %T\n",a,b,d)
+	s:=[]int{0,1,2,3,4,5}
+	fmt.Println(s[:2])
+	slice1:=make([]int,5)
+	slice2:=make([]int,5,5)
+	fmt.Printf("%T %d %d\n",slice1,len(slice1),cap(slice1))
+	fmt.Printf("%T %d %d\n",slice2,len(slice2),cap(slice2))
+}
+func test2() {
+	var runes []rune
+	for _,r:=range "hello,世界"{
+		runes=append(runes,r)
+	}
+	fmt.Printf("%q\n",runes)
+}
 func main() {
-	startCrawl()
+	test2()
+	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
 	// go counter(naturals)
