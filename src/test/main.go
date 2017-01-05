@@ -19,8 +19,18 @@ const(
 	angle=math.Pi/6
 )
 var sin30,cos30=math.Sin(angle),math.Cos(angle)
+type map_value  map[string][]string
+func test3() {
+	m:=map_value("lang":{"ch","en"})
+	m["item"]="item1"
+	fmt.Println(m["lang"])
+	fmt.Println(m["item"])
+	
+}
 func main() {
-	startHttpServer()
+
+	test3()
+	// startHttpServer()
 	
 }
 func corner(i, j int) (float64, float64) {
