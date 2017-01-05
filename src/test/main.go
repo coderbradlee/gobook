@@ -21,15 +21,31 @@ const(
 var sin30,cos30=math.Sin(angle),math.Cos(angle)
 type map_value  map[string][]string
 func test3() {
-	m:=map_value("lang":{"ch","en"})
+	m:=map_value{"lang":{"ch","en"}}
 	m["item"]=append(m["item"],"item1")
 	fmt.Println(m["lang"])
 	fmt.Println(m["item"])
-	
+	m=nil
+	m["item"]=append(m["item"],"item2")
+	fmt.Println(m["item"])
+}
+type ByteCounter int
+func (c *ByteCounter)Write(p []byte)(int,error) {
+	*c+=ByteCounter(len(p))
+	return len(p),nil	
+}
+func test4() {
+	var c ByteCounter
+	c.Write([]byte("hellooo"))
+	fmt.Println(c)
+	var name="Dolly"
+	c=0
+	fmt.Fprintf(&c,"hello,%s",name)
+	fmt.Println(c)
 }
 func main() {
 
-	test3()
+	test4()
 	// startHttpServer()
 	
 }

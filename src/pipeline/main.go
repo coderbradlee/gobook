@@ -6,7 +6,7 @@ import (
 	"log"
 	"crypto/sha256"
 )
-
+//go get godoc.org/golang.org/x/net/html
 var tokens=make(chan struct{},200)
 func crawl(url string)[]string{
 	fmt.Println(url)
@@ -73,18 +73,11 @@ func test2() {
 	}
 	fmt.Printf("%q\n",runes)
 }
-type map_value  map[string][]string
-func test3() {
-	m:=map_value("lang":{"ch","en"})
-	m["item"]="item1"
-	fmt.Println(m["lang"])
-	fmt.Println(m["item"])
-	
-}
+
 func main() {
-	test3()
+	// test3()
 	// test2()
-	// startCrawl()
+	startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
 	// go counter(naturals)
