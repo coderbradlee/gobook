@@ -22,7 +22,7 @@ var sin30,cos30=math.Sin(angle),math.Cos(angle)
 type map_value  map[string][]string
 func test3() {
 	m:=map_value("lang":{"ch","en"})
-	m["item"]="item1"
+	m["item"]=append(m["item"],"item1")
 	fmt.Println(m["lang"])
 	fmt.Println(m["item"])
 	
