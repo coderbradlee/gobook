@@ -73,8 +73,17 @@ func test2() {
 	}
 	fmt.Printf("%q\n",runes)
 }
+type map_value  map[string][]string
+func test3() {
+	m:=map_value("lang":{"ch","en"})
+	m["item"]="item1"
+	fmt.Println(m["lang"])
+	fmt.Println(m["item"])
+	
+}
 func main() {
-	test2()
+	test3()
+	// test2()
 	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
