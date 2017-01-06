@@ -3,8 +3,12 @@ package main
 import "fmt"
 import "links"
 import (
-	"log"
-	"crypto/sha256"
+	"log" 
+	"crypto/sha256"	
+	"io/ioutil" 
+	"os" 
+	"path/filepath"
+	"flag"
 )
 //go get godoc.org/golang.org/x/net/html
 var tokens=make(chan struct{},200)
@@ -75,9 +79,10 @@ func test2() {
 }
 
 func main() {
+	// start_du()
 	// test3()
 	// test2()
-	startCrawl()
+	// startCrawl()
 	// naturals:=make(chan int)
 	// squares:=make(chan int)
 	// go counter(naturals)

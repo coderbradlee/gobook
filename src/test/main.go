@@ -9,7 +9,129 @@ import(
 	"image/color" 
 	"image/png" 
 	"math/cmplx" 
+	_"crypto/sha256"	
+	"io/ioutil" 
+	"os" 
+	"path/filepath"
+	"flag"
+	"time"
 )
+var verbose =flag.Bool("v",false,"show verbose progress messages")
+func walkDir(dir string,fileSizes chan<-int64) {
+	for _,entry:=range dirents(dir){
+		if entry.IsDir(){
+			subdir:=filepath.Join(dir,entry.Name())
+			walkDir(subdir,fileSizes)
+		}else{
+			fileSizes<-entry.Size()
+		}
+	}
+}
+func dirents(dir string)[]os.FileInfo {
+	entries,err:=ioutil.ReadDir(dir)
+	if err!=nil{
+		fmt.Fprintf(os.Stderr,"du1:%v\n",err)
+		return nil
+	}
+	return entries
+}
+func printDiskUsage(nfiles,nbytes int64) {///1024/1024/1024
+	fmt.Printf("%d files %.1f GB\n",nfiles,float64(nbytes)/1e9)
+}
+func start_du() {
+	flag.Parse()
+	roots:=flag.Args()
+	if len(roots)==0{
+		roots=[]string{"."}
+	}
+	fileSizes:=make(chan int64)
+	go func() {
+		for _,root:=range roots{
+			walkDir(root,fileSizes)
+		}
+		close(fileSizes)
+	}()
+	var nfiles,nbytes int64
+	for size:=range fileSizes {
+		nfiles++
+		nbytes+=size
+	}
+	printDiskUsage(nfiles,nbytes)
+}
+func start_du2() {
+	flag.Parse()
+	roots:=flag.Args()
+	if len(roots)==0{
+		roots=[]string{"."}
+	}
+	fileSizes:=make(chan int64)
+	go func() {
+		for _,root:=range roots{
+			walkDir(root,fileSizes)
+		}
+		close(fileSizes)
+	}()
+	var nfiles,nbytes int64
+	var tick <-chan time.Time
+	if *verbose{
+		tick=time.Tick(500*time.Millisecond)
+	}
+	loop:
+		for{
+			select{
+			case size,ok:=<-fileSizes:
+				if !ok{
+					break loop
+				}
+				nfiles++
+				nbytes+=size
+			case <-tick:
+				printDiskUsage(nfiles,nbytes)
+			}
+		}
+	printDiskUsage(nfiles, nbytes) // final totals
+	
+}
+var countDown=make(chan int,2)
+func test5() {
+	var x,y int
+	go func () {
+		x=1
+		fmt.Printf("y: %d\n",y)
+		countDown<-5
+	}()
+	go func () {
+		y=1
+		fmt.Printf("x: %d\n",x)
+		countDown<-6
+	}()
+}
+func test6() {
+	for{
+		go fmt.Print(0)
+		fmt.Print(1)
+	}
+}
+func main() {
+
+	test6()
+	// test5()
+	
+	// for{
+	// 	select{
+	// 	case msg:=<-countDown:
+	// 		fmt.Printf("i: %d\n",msg)
+	// 	}
+	// }
+	
+	// start_du2()
+	// test4()
+	// startHttpServer()
+}
+
+
+
+
 const(
 	width,height=600,320
 	cells=100
@@ -43,12 +165,7 @@ func test4() {
 	fmt.Fprintf(&c,"hello,%s",name)
 	fmt.Println(c)
 }
-func main() {
 
-	test4()
-	// startHttpServer()
-	
-}
 func corner(i, j int) (float64, float64) {
 	// Find point (x,y) at corner of cell (i,j).
 	x := xyrange * (float64(i)/cells - 0.5) 
